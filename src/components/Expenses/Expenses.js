@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import ExpenseItem from './ExpenseItem';
 import './Expenses.css';
 import Card from '../UI/Card';
 import ExpensesFilter from './ExpensesFilter';
-
+import ExpensesList from './ExpensesList';
+import ExpensesChart from './ExpensesChart';
 // const Expenses =(props) =>{
 
 //   const [filteredYear,setFilteredYear] = useState('2020');
@@ -93,6 +93,21 @@ const Expenses = (props) => {
   return expense.date.getFullYear().toString() === filteredYear;
  });
 
+ //variable that changes on condition
+
+ //  let expensesContent = <p>No Expenses Found</p>;
+
+ //  if (ExpensesFilter.length > 0) {
+ //   expensesContent = filteredExpenses.map((expense) => (
+ //    <ExpenseItem
+ //     key={expense.id}
+ //     title={expense.title}
+ //     amount={expense.amount}
+ //     date={expense.date}
+ //    />
+ //   ));
+ //  }
+
  return (
   <div>
    <Card className="expenses">
@@ -100,18 +115,39 @@ const Expenses = (props) => {
      selected={filteredYear}
      onChangeFilter={filterChangeHandler}
     />
-    {/** we are gonna dynamically render the expenses items,
-     * we wanna grab the items via props from the expense array
+    {/** We check if any item available
+     * and display data accordingly
+     * we can not use if or loop inside JSX
      */}
 
-    {filteredExpenses.map((expense) => (
-     <ExpenseItem
-      key={expense.id}
-      title={expense.title}
-      amount={expense.amount}
-      date={expense.date}
-     />
-    ))}
+    {/* {filteredExpenses.length === 0 ? (
+     <p>No Expenses Found</p>
+    ) : (
+     filteredExpenses.map((expense) => (
+      <ExpenseItem
+       key={expense.id}
+       title={expense.title}
+       amount={expense.amount}
+       date={expense.date}
+      />
+     ))
+    )} */}
+
+    {/* we can short circuit this for shorter code */}
+
+    {/* {filteredExpenses.length === 0 && <p>No Expenses Found</p>}
+
+    {filteredExpenses.length > 0 &&
+     filteredExpenses.map((expense) => (
+      <ExpenseItem
+       key={expense.id}
+       title={expense.title}
+       amount={expense.amount}
+       date={expense.date}
+      />
+     ))} */}
+    <ExpensesChart expense={filteredExpenses} />
+    <ExpensesList items={filteredExpenses} />
    </Card>
   </div>
  );

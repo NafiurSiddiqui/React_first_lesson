@@ -86,7 +86,7 @@ const ExpenseForm = (props) => {
    </div>
    <div className="new-expense__actions">
     <button type="submit">Submit</button>
-    {/* now the whoel form element will be submitted upon submit pressed */}
+    {/* now the whole form element will be submitted upon submit pressed */}
    </div>
   </form>
  );
